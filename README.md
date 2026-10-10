@@ -1,70 +1,104 @@
-# Getting Started with Create React App
+<div align="center">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 🧾 Invoice Generator
 
-## Available Scripts
+**Create professional invoices in seconds — add items, apply tax and discount, preview the result and download it as a PDF.**
 
-In the project directory, you can run:
+[![Live Demo](https://img.shields.io/badge/Live_Demo-invoice--generator--six--neon.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://invoice-generator-six-neon.vercel.app)
 
-### `npm start`
+![React](https://img.shields.io/badge/React_17-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![Headless UI](https://img.shields.io/badge/Headless_UI-66E3FF?style=flat-square&logo=headlessui&logoColor=black)
+![jsPDF](https://img.shields.io/badge/jsPDF-EC1C24?style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/Shariq2003/Invoice-Generator?style=flat-square)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+[Features](#-features) · [How it works](#-how-it-works) · [Getting Started](#-getting-started) · [Structure](#-project-structure)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+</div>
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## ✨ Features
 
-### `npm run build`
+| | Feature | Details |
+|---|---|---|
+| 🧍 | **Cashier & customer** | Name both parties on every invoice |
+| ➕ | **Dynamic line items** | Add, edit and remove items (name, quantity, price) |
+| 🧮 | **Live totals** | Subtotal, tax %, discount % and grand total update as you type |
+| 👀 | **Review modal** | See the finished invoice before you export it |
+| 📥 | **PDF download** | Renders the invoice to an image and saves `invoice-<number>.pdf` |
+| 🔢 | **Auto-numbering** | "Next" starts a fresh invoice with the number incremented (leading zeros preserved) |
+| 📱 | **Responsive** | Tailwind CSS layout that works on phone and desktop |
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🔄 How it works
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```mermaid
+flowchart LR
+    A["Fill in cashier,<br/>customer & items"] --> B["Totals update live<br/>subtotal − discount + tax"]
+    B --> C["Review Invoice"]
+    C --> D["html-to-image → PNG"]
+    D --> E["jsPDF → 📄 invoice-N.pdf"]
+    C --> F["Next → new invoice<br/>number + 1"]
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<details>
+<summary><b>🧮 Calculation</b></summary>
 
-### `npm run eject`
+<br/>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```text
+subtotal = Σ (price × qty)        (items with a name only)
+discount = subtotal × discount% / 100
+tax      = subtotal × tax% / 100
+total    = subtotal − discount + tax
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+</details>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🚀 Getting Started
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+git clone https://github.com/Shariq2003/Invoice-Generator.git
+cd Invoice-Generator
+npm install
+npm start            # http://localhost:3000
+```
 
-## Learn More
+<details>
+<summary><b>📜 Available scripts</b></summary>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+| Command | What it does |
+|---|---|
+| `npm start` | Run the dev server |
+| `npm run build` | Production build into `build/` |
+| `npm test` | Run tests |
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+</details>
 
-### Code Splitting
+## 📁 Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<details>
+<summary><b>Expand tree</b></summary>
 
-### Analyzing the Bundle Size
+```text
+src/
+├── components/
+│   ├── InvoiceForm.jsx      # main form, state & totals
+│   ├── InvoiceItem.jsx      # one line item row
+│   ├── InvoiceField.jsx     # reusable input
+│   └── InvoiceModal.jsx     # preview + PDF export
+└── helpers/
+    └── IncrementString.jsx  # "INV-009" → "INV-010"
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+</details>
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<div align="center">
 
-### Advanced Configuration
+Built by **[Shariq](https://github.com/Shariq2003)** · [LinkedIn](https://www.linkedin.com/in/shariq-sd)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+⭐ If you like this project, consider giving it a star!
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+</div>
